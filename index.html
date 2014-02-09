@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
+	<head>
+		<meta charset="utf-8">
+		<!-- CSS. CDN stylesheets -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+
+		<!-- CSS. Vendors stylesheets -->
+		<link rel="stylesheet" type="text/css" href="./vendor/google/google-code-prettify/prettify.css">
+		<link rel="stylesheet" type="text/css" href="./vendor/jasmine/lib/jasmine-2.0.0/jasmine.css">
+
+		<!-- App. stylesheets -->
+		<link rel="stylesheet" href="./public/css/style.css">
+
+		<!-- JS. CDN Libraries -->
+		<script src='https://cdn.firebase.com/v0/firebase.js'></script>
+		<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+		<!-- JS. Vendors sources -->
+		<script type="text/javascript" src="./vendor/google/google-code-prettify/prettify.js"></script>
+		<script type="text/javascript" src="./vendor/jasmine/lib/jasmine-2.0.0/jasmine.js"></script>
+  		<script type="text/javascript" src="./vendor/jasmine/lib/jasmine-2.0.0/jasmine-html.js"></script>
+  		<script type="text/javascript" src="./vendor/jasmine/lib/jasmine-2.0.0/boot.js"></script>
+		
+
+		<!-- App sources -->
+		<script type="text/javascript" src="./public/js/application.js"></script>
+		<script type="text/javascript" src="./public/js/template.js"></script>
+	    <script type="text/javascript" src="./public/js/controllers/snippets.js"></script>
+	    <script type="text/javascript" src="./public/js/controllers/credits.js"></script>
+	    <script type="text/javascript" src="./public/js/run.js"></script>
+
+
+	</head>
+	<body>
+	  	<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header navbar-inverse">
+		      	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+		      	</button>
+		      	<a class="navbar-brand" href="#">Snippet</a>
+		    </div>
+			<div class="collapse navbar-collapse navbar-inverse" id="bs-example-navbar-collapse-1">
+		      	<ul class="nav navbar-nav">
+			        <li><a href="javascript:void(0);" data-trigger="snippet.view">List</a></li>
+			        <li><a href="javascript:void(0);" data-trigger="snippet.add">Add new snippet</a></li>
+			        <li><a href="specs.html" data-trigger="credits.view">Credits</a></li>
+		      	</ul>
+		    </div>
+		    <!-- List snippet page -->
+		    <div class="panel panel-default" data-module="snippet" data-view="view" data-visibility="hidden">
+	  			<div class="panel-body"></div>
+			</div>
+			
+			<!-- Add snippet page -->
+			<div class="panel panel-default" data-module="snippet" data-view="add" data-visibility="hidden">
+	  			<div class="panel-body"></div>
+			</div>
+
+			<!-- Add snippet page -->
+			<div class="panel panel-default" data-module="tests" data-view="view" data-visibility="hidden">
+	  			<div class="panel-body">Teste aici</div>
+			</div>
+		    
+			<!-- Modal tempate -->
+		    <div class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-name='snippet.modal'>
+  				<div class="modal-dialog modal-lg">
+    				<div class="modal-content">
+	    				<div class="modal-header">
+	      					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        				<h4 class="modal-title" data-value="description"></h4>
+	      				</div>
+	      				<div class="modal-body">
+							<pre class="prettyprint linenums" data-value="code"></pre>
+						</div>
+				    </div>
+  				</div>
+			</div>
+	  	</div>
+	  	<!-- Templates will be loaded from here-->
+	  	
+	  	<!-- Snippet row template  -->
+	  	<div data-template="snippet.norecords" class="template">
+	  		<div class="row">
+				<div class="col-md-12" data-value="author">No records found!</div>
+		  	</div>
+	  	</div>
+	  	<!-- END Snippet row template  -->
+
+		<!-- No records  -->
+	  	<div data-template="snippet.view" class="template">
+	  		<div class="row">
+	  			<div class="col-md-1 glyphicon glyphicon-folder-open" data-trigger="snippet.details" data-id></div>
+		    	<div class="col-md-8" title="View snippet" data-value="description" short></div>
+				<div class="col-md-2" data-value="author"></div>
+		  	</div>
+	  	</div>
+
+	  	<!-- Snippet Add details  -->
+	  	<div data-template="snippet.add" class="template">
+	  		<form data-form="snippet.save">
+				<div class="form-group">
+				    <label>Snippet description</label>
+				    <input type="text" class="form-control" placeholder="Snippet description" data-value="description" required>
+				</div>
+				<div class="form-group">
+				    <label>Snippet code</label>
+				    <textarea class="form-control" rows="3" placeholder="Snippet code" data-value="code" required></textarea>
+				</div>
+				<div class="form-group">
+				    <label>Snippet author</label>
+				    <input type="text" class="form-control" placeholder="Snippet author" data-value="author" required>
+				</div>
+			  	<button type="submit" class="btn btn-default" data-trigger="snippet.save">Submit</button>
+			</form>
+	  	</div>
+	  	<!-- END Snippet Add details -->
+
+	  	<!-- Credits view  -->
+	  	<div data-template="credits.view" class="template">
+	  		<ul class="list-group">
+	  			<li class="list-group-item">App name: Snippetor<div data-value="version"></div></li>
+				<li class="list-group-item">Build time: 16h</li>
+				<li class="list-group-item">3rd party: Boostrap, Firebase</li>
+				<li class="list-group-item">Author: Tibi</li>
+			</ul>
+	  	</div>
+	  	<!-- END Snippet details  -->
+	</body>
+</html>

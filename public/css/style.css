@@ -1,0 +1,24 @@
+@import url('reset.css');
+
+.clearfix:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+
+html, body{
+	margin: 0 auto;
+	background:#FFFFFF;
+	position:relative;
+	display: block;
+	overflow-x: hidden; 
+}
+[data-visibility="hidden"] {
+	display: none;
+}
+[data-visibility="visible"] {
+	display: block;
+}
+.template {
+	display: none;
+}
