@@ -9,6 +9,6 @@
  */
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    prettyPrint();
-	App.init();
+    hljs.configure({tabReplace: '    '});	
+    App.init();
 });

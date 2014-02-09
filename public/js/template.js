@@ -34,6 +34,13 @@
 		}
 	};
 	
+	/**
+	 * Template.map Map data over html
+	 * 
+	 * @param {Object} data Object to fill modal box with
+	 * @param {Function} callback Send response to a request
+	 * @type {Object}
+	 */
 	Template.map = function(data, callback){
 		var key,
 			keys,
@@ -62,13 +69,20 @@
 		callback(output);
 	};
 
+	/**
+	 * Template.modal Wrapper over Bootstrap modal box
+	 * 
+	 * @method load
+	 * @param {String} modalName Valid selector for a modal box html node
+	 * @param {Object} data Object to fill modal box with
+	 * @type {Object}
+	 */
 	Template.modal = {
 		load: function(modalName, data) {
 			var modalBox,
 				i_data;
 
-			$('[data-name="snippet.modal"]').on('show.bs.modal', function (){
-				prettyPrint();
+			$('[data-name="snippet.modal"]').on('shown.bs.modal', function (){
 				$('.prettyprinted').removeClass('prettyprinted');
 			});
 
@@ -80,22 +94,29 @@
 
 			for(i_data = 0; i_data < Object.keys(data).length; i_data += 1) {
 				modalBox.find('[data-value="' + Object.keys(data)[i_data] + '"]').html(data[Object.keys(data)[i_data]]);
+				if('code' === Object.keys(data)[i_data]) {
+					$('pre code').each(function(i,e) {
+						hljs.highlightBlock(e);
+					});
+				}
 			}
-			modalBox = $('[data-name="' + modalName + '"]');
 			modalBox.modal('show');
-
-
 		},
 		unload: function(modalObject) {
 			modalObject.find('[data-value]').html('');
 		}
 	};
 
+	/**
+	 * Template.utils Check if template exists
+	 * @type {Object}
+	 */
 	Template.utils = {
 		checkTemplate: function(selector){
 			return (null === document.querySelector(selector)) ? false : true;
 		}
 	};
+
 	/**
 	 * Load public data to window
 	 * @type {Object}

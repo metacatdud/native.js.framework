@@ -118,11 +118,13 @@
 	 * @return {void}
 	 */
 	App.menu = {
+		currentMenu: '',
 		activate: function(menuitem){
 			if(null !== document.querySelector('.navbar-nav .active')) {
 				document.querySelector('.navbar-nav .active').setAttribute('class', '')
 			}
 			document.querySelector('[data-trigger="' + menuitem + '"]').parentNode.setAttribute('class', 'active');
+			this.currentMenu = menuitem;
 		}
 	};
 
