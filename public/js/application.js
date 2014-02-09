@@ -80,8 +80,10 @@
 				 * Fires controller action as specified in dataset
 				 */
 				if(undefined !== element.dataset.trigger) {
-					var targetArr = element.dataset.trigger.split('.');
-					App.controller[targetArr[0]].load(targetArr, element.dataset);
+					if(undefined !== App.menu.currentMenu && App.menu.currentMenu !== element.dataset.trigger) {
+						var targetArr = element.dataset.trigger.split('.');
+						App.controller[targetArr[0]].load(targetArr, element.dataset);
+					}
 				}
 			}, false);
 		},
