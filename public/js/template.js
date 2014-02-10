@@ -82,7 +82,12 @@
 			for(i_data = 0; i_data < Object.keys(data[key]).length; i_data += 1) {
 				if(null !== clone.querySelector('[data-value="' + keys[i_data] + '"]')) {
 					if(true === clone.querySelector('[data-value="' + keys[i_data] + '"]').hasAttribute('short')){
-						clone.querySelector('[data-value="' + keys[i_data] + '"]').innerHTML = data[key][keys[i_data]].substring(0,50)+'...';
+						if(50 < data[key][keys[i_data]].length) {
+							clone.querySelector('[data-value="' + keys[i_data] + '"]').innerHTML = data[key][keys[i_data]].substring(0,50)+'...';
+						} else {
+							clone.querySelector('[data-value="' + keys[i_data] + '"]').innerHTML = data[key][keys[i_data]];
+						}
+						
 					} else {
 						clone.querySelector('[data-value="' + keys[i_data] + '"]').innerHTML = data[key][keys[i_data]];
 					}
