@@ -1,3 +1,14 @@
+/**
+ * Template engine
+ *
+ * Feature
+ * -> Load tempalte
+ * -> Bind data to template
+ *
+ * @version 0.1.0
+ * @author Tibi
+ */
+
 (function(){
 	"use strict";
 	
@@ -8,6 +19,13 @@
 		source: {}
 	};
 
+	/**
+	 * Template.load Set current module.action template
+	 * 
+	 * @param {String} htmlElement selector name
+	 * @param {Object} data object data to be mapped onto html
+	 * @type {Object}
+	 */
 	Template.load = function(htmlElement, data){
 
 		this.source = document.querySelector('[data-template="' + htmlElement + '"].template').firstElementChild.cloneNode(true);
@@ -20,6 +38,13 @@
 		}
 	};
 
+	/**
+	 * Template.setTemplate Set current module.action template
+	 * 
+	 * @param {String} template selector name
+	 * @param {String} customPlaceHolder optional if target template is deeper
+	 * @type {Object}
+	 */
 	Template.setTemplate = function(template, customPlaceHolder){
 		var selector;
 
